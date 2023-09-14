@@ -1,0 +1,17 @@
+{
+  "name": "mapilio-uploader",
+  "version": "0.0.1",
+  "description": "Mapilio desktop application for uploading data to Mapilio",
+  "license": "MIT",
+  "author": {
+    "name": "Mapilio",
+    "url": "https://github.com/mapilio/Mapilio-kit-GUI"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}
