@@ -1,4 +1,4 @@
-
+import React from "react";
 import Login from "./screens/auth/Login";
 import Upload from "./screens/Upload";
 import Home from "./screens/Home";

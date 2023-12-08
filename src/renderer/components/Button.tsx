@@ -1,3 +1,5 @@
+import React from "react";
+
 const Button = (
   props: React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,

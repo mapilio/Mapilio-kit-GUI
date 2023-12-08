@@ -1,16 +1,25 @@
+import React, { useEffect } from 'react';
 import { useAppSelector } from "../redux/hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
-import { logout } from "../redux/reducers/userReducer";
+import { logout } from '../redux/reducers/userReducer';
 import Logo from "../../../assets/images/mapilio.png";
 import MapilioBetaLogo from "../../../assets/images/mapilioBetalogo.svg";
+import { fetchMyOrganizations, getUserDetails } from '../helper/fetchFunctions';
 
 
 function LeftSideBar() {
-  const { isLogin } = useAppSelector((state) => state.user);
+  const { isLogin, avatar, username, userToken, organizations } = useAppSelector((state) => state.user);
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLogin && !avatar) {
+      getUserDetails();
+    }
+  }, []);
+
 
   return (
     <div className="w-1/3 bg-baseprimary flex items-center justify-center ">
@@ -22,7 +31,7 @@ function LeftSideBar() {
           <div className="flex flex-col space-y-4">
             <Link
               to="/upload"
-              className={` text-menuText font-normal text-2xl ${
+              className={`text-menuText font-normal text-2xl ${
                 location.pathname === "/upload" && "text-blue-800"
               } transition-all hover:text-gray-700`}
             >
@@ -30,7 +39,7 @@ function LeftSideBar() {
             </Link>
             <Link
               to="/about"
-              className={` text-menuText  font-normal text-2xl ${
+              className={`text-menuText  font-normal text-2xl ${
                 location.pathname === "/about" && "text-blue-800"
               } transition-all hover:text-gray-700`}
             >
@@ -50,19 +59,46 @@ function LeftSideBar() {
       {isLogin && (
         <div className="absolute bottom-24 left-8 text-menuText font-normal text-xl">
           <div className="flex items-center space-x-2">
-            <img
-              className="rounded-full"
-              alt=""
-              width={40}
-            />
-            <button
-              onClick={() => {
-                dispatch(logout());
-                navigate("/login");
-              }}
+
+
+            <div
+              className="dropdown dropdown-top"
+              onClick={fetchMyOrganizations}
+
             >
-              <p>Logout</p>
-            </button>
+              <div tabIndex={0} role="button" className="m-1 flex items-center gap-x-4">
+                <img
+                  className="rounded-full"
+                  alt=""
+                  width={40}
+                  src={avatar?? "https://www.gravatar.com/avatar"}
+                />
+
+                {/* up icon */}
+                <svg className="h-4 w-4 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                </svg>
+              </div>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow rounded-md bg-base-100 w-52">
+                <li>
+                  <div className="flex items-center">
+                    <img
+                      className="rounded-full"
+                      alt=""
+                      width={40}
+                      src={avatar?? "https://www.gravatar.com/avatar"}
+                    />
+                    <span className="ml-2">{username}</span>
+                  </div>
+                </li>
+                <li
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate("/login");
+                  }}
+                ><a>Logout</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       )}
