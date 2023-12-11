@@ -13,18 +13,18 @@ const configuration: webpack.Configuration = {
   mode: 'development',
 
   entry: [
-    'webpack-dev-server/client?http://localhost:8080', // Webpack Dev Server'ı etkinleştirin ve bağlantı noktasını belirtin
-    'webpack/hot/only-dev-server', // HMR sadece tarayıcıyı yeniden yükler
+    'webpack-dev-server/client?http://localhost:8080', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server',
     path.join(webpackPaths.srcRendererPath, 'index.tsx'),
   ],
 
   output: {
     path: path.join(webpackPaths.rootPath, 'client'),
     filename: 'bundle.js',
-    publicPath: '/', // Webpack Dev Server'ın root path'i ayarlayın
+    publicPath: '/',
   },
 
-  target: 'web', // Tarayıcıda çalışacak şekilde değiştirin
+  target: 'web',
 
   module: {
     rules: [
@@ -38,7 +38,7 @@ const configuration: webpack.Configuration = {
       {
         test: /\.s?(a|c)ss$/,
         use: [
-          'style-loader', // Stil dosyalarını DOM'a eklemek için style-loader ekleyin
+          'style-loader',
           'css-loader',
           'sass-loader',
           {
@@ -74,7 +74,7 @@ const configuration: webpack.Configuration = {
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // HMR'yi etkinleştiren plugin
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(webpackPaths.srcRendererPath, 'index.html'),
