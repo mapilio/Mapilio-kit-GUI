@@ -1,3 +1,4 @@
+import React from "react";
 import LeftSideBar from "./LeftSideBar";
 
 function Wrapper({ children }: { children?: React.ReactNode }) {
