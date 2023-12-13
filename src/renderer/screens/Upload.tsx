@@ -98,7 +98,7 @@ function Upload() {
           />
 
           <p className="text-md text-menuText mt-4">
-            Drag & Drop files or
+            Drag files or
             <span
               className="text-blue-600 cursor-pointer ml-1"
             >
@@ -109,6 +109,14 @@ function Upload() {
             Input video path you want to process
           </p>
         </div>
+
+        <div>
+          <p className="justify-center items-center text-center text-md text-menuText mt-4">
+            In case you face with any kind of issues, visit:
+          <a href="https://forum.mapilio.com/c/mapilio-uploader-kit/9" target="_blank" rel="noreferrer" className="text-blue-600 ml-1">Mapilio Forum</a>
+          </p>
+        </div>
+
       </div>
     </Wrapper>
   );
