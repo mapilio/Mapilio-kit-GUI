@@ -98,7 +98,6 @@ function Upload() {
           />
 
           <p className="text-md text-menuText mt-4">
-            Drag files or
             <span
               className="text-blue-600 cursor-pointer ml-1"
             >
@@ -106,7 +105,7 @@ function Upload() {
             </span>
           </p>
           <p className="text-sm text-secondary mt-4">
-            Input video path you want to process
+            Choose image directory that you want to upload
           </p>
         </div>
 
