@@ -90,4 +90,4 @@ def _get_args(func):
     arg_names = func.__code__.co_varnames[:func.__code__.co_argcount]
     return {arg: None for arg in arg_names}
 
-eel.start('index.html', mode='edge')
+eel.start('index.html', mode='default')
